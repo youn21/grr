@@ -33,8 +33,10 @@ RUN apt-get update \
       && rm -rf /var/lib/apt/lists/*
 
 COPY docker/nginx-unit/configuration.json docker/nginx-unit/connect-envsubst.sh /docker-entrypoint.d/
+COPY docker/nginx-unit/migrations.sql /
 COPY composer.json /var/www/
 COPY . /var/www/
+RUN rm -rf /var/www/installation
 COPY --from=composer /app/vendor /var/www/vendor/
 
 RUN chown -R unit:unit /var/www
