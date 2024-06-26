@@ -47,11 +47,8 @@ include/config_CAS.inc.php
 include/config_ldap.inc.php
 include/cas.inc.php
 include/config.inc.php
-<<<<<<< HEAD
 include/connect.inc.php
-=======
 .idea
->>>>>>> 0b07bc4c959e8fa5549eb917a4460928df4d9308
 /edit_entry_handler.ori.php
 /test_date.php
 *.ori.php
