@@ -16,4 +16,3 @@ $dbPort=3306;
 # ligne suivante : adaptation EnvOLE
 $apikey="mypassphrase";
 ?>
-
