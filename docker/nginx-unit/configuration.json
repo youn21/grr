@@ -1,0 +1,53 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes/symfony"
+        }
+    },
+    "routes": {
+        "symfony": [
+            {
+                "match": {
+                    "uri": [
+                        "*.php",
+                        "*.php/*"
+                    ]
+                },
+
+                "action": {
+                    "pass": "applications/symfony/direct"
+                }
+            },
+            {
+                "action": {
+                    "share": "/var/www/$uri",
+                    "fallback": {
+                        "pass": "applications/symfony/index"
+                    }
+                }
+            }
+        ]
+    },
+
+    "applications": {
+        "symfony": {
+            "type": "php",
+            "options": {
+              "admin": {
+                "variables_order": "EGPCS",
+		"max_input_vars": "4666"
+              }
+            },
+            "targets": {
+                "direct": {
+                    "root": "/var/www/"
+                },
+
+                "index": {
+                    "root": "/var/www/",
+                    "script": "index.php"
+                }
+            }
+        }
+    }
+}
