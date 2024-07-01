@@ -35,7 +35,8 @@
             "options": {
               "admin": {
                 "variables_order": "EGPCS",
-		"max_input_vars": "4666"
+		"max_input_vars": "4666",
+		"error_reporting": "E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED"
               }
             },
             "targets": {
