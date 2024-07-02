@@ -40,6 +40,7 @@ COPY . /var/www/
 RUN rm -rf /var/www/installation
 COPY --from=composer /app/vendor /var/www/vendor/
 
-RUN chown -R unit:unit /var/www /var/lib/unit/ /var/run/ /docker-entrypoint.d/
+RUN chown -R unit:unit /var/www/ /docker-entrypoint.d/ \
+    && chown unit:unit /var/lib/unit/ /var/run/
 WORKDIR /var/www/
 USER unit
