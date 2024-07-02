@@ -42,7 +42,7 @@ COPY --from=composer /app/vendor /var/www/vendor/
 
 RUN chown -R unit:root /var/www/ /docker-entrypoint.d/ \
     && chmod -R ug+rwX /var/www/ /docker-entrypoint.d/ \
-    && chown unit:root /var/lib/unit/ /var/run/ \
-    && chmod ug+rwX /var/lib/unit/ /var/run/
+    && chown unit:root /var/lib/unit/ /run/ \
+    && chmod ug+rwX /var/lib/unit/ /run/
 WORKDIR /var/www/
 USER unit
