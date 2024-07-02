@@ -15,6 +15,7 @@ RUN apt-get update \
          libpng-dev \
          libxml2-dev \
          libzip-dev \
+	 mariadb-client \
       && docker-php-ext-install \
          gd \
          mbstring \
