@@ -1,3 +1,5 @@
+SET character_set_server = 'utf8mb4';
+
 CREATE TABLE grr_db_version (id enum('1'), version int DEFAULT '0', PRIMARY KEY (id));
 
 CREATE TABLE grr_calendrier_feries (  `DAY` int(11) NOT NULL DEFAULT '0');
