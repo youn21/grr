@@ -21,6 +21,21 @@ foreach($json->applications as $application => $data) {
     array_push($metrics, "unit_application_".$application."_requests_active ".$data->requests->active);
 }
 
+include 'connect.inc.php';
+
+$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbDb);
+
+if (mysqli_connect_errno()) {
+  printf("Cant connect to GRR database", mysqli_connect_error());
+  exit();
+}
+
+$grr_metrics = array("grr_utilisateurs", "grr_type_area", "grr_entry", "grr_site");
+foreach($grr_metrics as $grr_metric) {
+  $rowcount = mysqli_num_rows($mysqli->query("SELECT * FROM $grr_metric"));
+  array_push($metrics, $grr_metric." ".$rowcount);
+}
+
 header("Content-Type: text/plain");
 echo join("\n", $metrics)."\n";
 ?>
