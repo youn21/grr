@@ -1,4 +1,4 @@
-FROM docker.io/library/composer:2.7.1 as composer
+FROM docker.io/library/composer:2.7.1 AS composer
  
 COPY composer.json /app/
  
@@ -12,8 +12,10 @@ RUN apt-get update \
       && apt-get install --no-install-recommends -y \
 	 gettext-base \
          libonig-dev \
+	 libpng16-16 \
          libpng-dev \
          libxml2-dev \
+	 libzip4 \
          libzip-dev \
 	 mariadb-client \
       && docker-php-ext-install \
@@ -35,13 +37,14 @@ RUN apt-get update \
 
 COPY docker/nginx-unit/configuration.json docker/nginx-unit/connect-envsubst.sh /docker-entrypoint.d/
 COPY docker/nginx-unit/migrations.sql /
+COPY docker/nginx-unit/prometheus.php /metrics/
 COPY composer.json /var/www/
 COPY . /var/www/
 RUN rm -rf /var/www/installation
 COPY --from=composer /app/vendor /var/www/vendor/
 
-RUN chown -R unit:root /var/www/ /docker-entrypoint.d/ \
-    && chmod -R ug+rwX /var/www/ /docker-entrypoint.d/ \
+RUN chown -R unit:root /var/www/ /docker-entrypoint.d/ /metrics \
+    && chmod -R ug+rwX /var/www/ /docker-entrypoint.d/ /metrics \
     && chown unit:root /var/lib/unit/ /run/ \
     && chmod ug+rwX /var/lib/unit/ /run/
 WORKDIR /var/www/

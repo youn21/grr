@@ -2,7 +2,10 @@
     "listeners": {
         "*:8080": {
             "pass": "routes/symfony"
-        }
+        },
+	"*:9090": {
+	    "pass": "routes/metrics"
+  }
     },
     "routes": {
         "symfony": [
@@ -24,6 +27,18 @@
                     "fallback": {
                         "pass": "applications/symfony/index"
                     }
+                }
+            }
+        ],
+        "metrics": [
+	    {
+                "match": {
+                    "uri": [
+                        "/metrics"
+                    ]
+                },
+                "action": {
+                    "pass": "applications/metrics"
                 }
             }
         ]
@@ -49,6 +64,14 @@
                     "script": "index.php"
                 }
             }
-        }
+        },
+	"metrics": {
+	  "type": "php",
+	  "root": "/metrics/",
+	  "script": "prometheus.php",
+	  "environment": {
+	    "control_socket": "/var/run/control.unit.sock"
+	  }
+    }
     }
 }
