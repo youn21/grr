@@ -1,14 +1,14 @@
 {
     "listeners": {
         "*:8080": {
-            "pass": "routes/symfony"
+            "pass": "routes/grr"
         },
 	"*:9090": {
 	    "pass": "routes/metrics"
   }
     },
     "routes": {
-        "symfony": [
+        "grr": [
             {
                 "match": {
                     "uri": [
@@ -18,14 +18,14 @@
                 },
 
                 "action": {
-                    "pass": "applications/symfony/direct"
+                    "pass": "applications/grr/direct"
                 }
             },
             {
                 "action": {
                     "share": "/var/www/$uri",
                     "fallback": {
-                        "pass": "applications/symfony/index"
+                        "pass": "applications/grr/index"
                     }
                 }
             }
@@ -45,7 +45,7 @@
     },
 
     "applications": {
-        "symfony": {
+        "grr": {
             "type": "php",
             "options": {
               "admin": {
