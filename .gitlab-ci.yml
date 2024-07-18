@@ -15,5 +15,6 @@ kaniko-build:
     search gitlab.svc.cluster.local svc.cluster.local cluster.local bordeaux
     nameserver 172.30.0.10
     options ndots:2
+    EOF
   extends:
     - .kaniko-build
