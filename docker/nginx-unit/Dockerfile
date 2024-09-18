@@ -38,7 +38,7 @@ RUN apt-get update \
 COPY docker/nginx-unit/configuration.json docker/nginx-unit/connect-envsubst.sh /docker-entrypoint.d/
 COPY docker/nginx-unit/migrations.sql /
 COPY docker/nginx-unit/prometheus.php /metrics/
-COPY composer.json /var/www/
+COPY docker/nginx-unit/healthz.php /var/www/healthz/
 COPY . /var/www/
 RUN rm -rf /var/www/installation
 COPY --from=composer /app/vendor /var/www/vendor/

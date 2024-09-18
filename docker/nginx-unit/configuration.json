@@ -12,6 +12,16 @@
             {
                 "match": {
                     "uri": [
+                        "/healthz"
+                    ]
+                },
+                "action": {
+                    "pass": "applications/healthz"
+                }
+            },
+	    {
+                "match": {
+                    "uri": [
                         "*.php",
                         "*.php/*"
                     ]
@@ -58,13 +68,21 @@
                 "direct": {
                     "root": "/var/www/"
                 },
-
+                "healthz": {
+                    "root": "/var/www/healthz",
+                    "script": "healthz.php"
+                },
                 "index": {
                     "root": "/var/www/",
                     "script": "index.php"
                 }
             }
         },
+	"healthz": {
+	  "type": "php",
+	  "root": "/var/www/healthz/",
+	  "script": "healthz.php"
+	},
 	"metrics": {
 	  "type": "php",
 	  "root": "/metrics/",
@@ -72,6 +90,6 @@
 	  "environment": {
 	    "control_socket": "/var/run/control.unit.sock"
 	  }
-    }
+	}
     }
 }
