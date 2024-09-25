@@ -9,12 +9,5 @@ kaniko-build:
     KANIKO_REGISTRY_MIRROR: registry.math.cnrs.fr
     DOCKERFILE_PATH: docker/nginx-unit/Dockerfile
     IMAGE_TAG: "$CI_REGISTRY_IMAGE:stable --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
-  before_script:
-  - |
-    cat > /etc/resolv.conf << EOF 
-    search gitlab.svc.cluster.local svc.cluster.local cluster.local bordeaux
-    nameserver 172.30.0.10
-    options ndots:2
-    EOF
   extends:
     - .kaniko-build
