@@ -6,8 +6,7 @@ $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbDb);
 }
 catch (Exception $e) {
     http_response_code(503);
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-    exit;
+    printf("Cant connect to GRR database", $e);
 }
 if (mysqli_connect_errno()) {
   http_response_code(503);
