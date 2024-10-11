@@ -14,10 +14,10 @@ La configuration de la connexion à la base de donnée a lieu au démarrage via 
 
 Un mécanisme simple simple simule les migrations de base via les fichiers [migrations.sh](migrations.sh) et [migrations.sql](migrations.sql). 
 
-## Ajout d'un endpoint *Healthz*
+## Ajout d'un endpoint */healthz*
 
-Une [route](configuration.json#L15) qui [pointe](configuration.json#L71) vers un [script idiot](healthz.php) vérifiant la possibilité de connexion à la base SQL jouera le rôle de *healthckeck*.
+Une [route](configuration.json#L11-21) qui [pointe](configuration.json#L71-74) vers un [script idiot](healthz.php) vérifiant la possibilité de connexion à la base SQL jouera le rôle de *healthckeck*.
 
-## Ajout d'un endpoint de métriques
+## Ajout d'un endpoint de */metrics*
 
-Un [listener](configuration.json#L7) sur le port 9090 et une [route](configuration.json#L47) qui [pointe](configuration.json#L86) vers un [script benêt](prometheus.php) permet d'exposer des métriques applicatives concernant NGINX Unit et l'application GRR (nombre d'utilisateurs, d'entrées, de sites…).
+Un [listener](configuration.json#L6-L7) sur le port 9090 et une [route](configuration.json#L43-54) qui [pointe](configuration.json#L86-92) vers un [script benêt](prometheus.php) permet d'exposer des métriques applicatives concernant NGINX Unit et l'application GRR (nombre d'utilisateurs, d'entrées, de sites…).
